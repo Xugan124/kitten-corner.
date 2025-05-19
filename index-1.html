@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小猫的安静角落</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #fefefe;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .diary, .comfort, .secret {
+      margin: 1.5rem 0;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background: #b8a9d1;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    .dot {
+      display: inline-block;
+      width: 10px; height: 10px;
+      background: #f4c6b5;
+      border-radius: 50%;
+      margin: 5px;
+      cursor: pointer;
+    }
+    .cat-helper {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      cursor: pointer;
+    }
+    #secret {
+      display: none;
+      text-align: center;
+    }
+    #secret img {
+      max-width: 200px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">小猫的安静角落</div>
+
+  <div class="diary">
+    <p>点一点这些小日记：</p>
+    <div class="dot" onclick="alert('今天没有哭，但其实也没有开心。')"></div>
+    <div class="dot" onclick="alert('大家都说我很好，可我只想被你说：“你别逞强了。”')"></div>
+    <div class="dot" onclick="alert('明明没谁对我凶，但我就是觉得很委屈。')"></div>
+    <div class="dot" onclick="alert('有点想逃，但还是按时喝水、洗头了。')"></div>
+    <div class="dot" onclick="alert('晚上走在回家的路上，突然好想有人等我、抱我。')"></div>
+  </div>
+
+  <div class="comfort">
+    <p>你对我说句话：</p>
+    <input id="msg" placeholder="输入你的话..." />
+    <button onclick="reply()">我来安慰你</button>
+    <p id="res"></p>
+  </div>
+
+  <div class="secret">
+    <button onclick="showSecret()">点三次猫猫后显示隐藏图</button>
+    <div id="secret">
+      <p>You make me happy.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Cat_love_note_doodle_by_Nefeli.png/512px-Cat_love_note_doodle_by_Nefeli.png" alt="秘密纸条" />
+    </div>
+  </div>
+
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="cat-helper" onclick="tapCat()" />
+
+  <script>
+    let taps = 0;
+    function tapCat() {
+      taps++;
+      if (taps >= 3) {
+        document.getElementById('secret').style.display = 'block';
+      } else {
+        alert("喵~ (" + taps + "/3)");
+      }
+    }
+
+    function reply() {
+      const responses = [
+        "你已经很棒了，真的。",
+        "不管你说什么，我都听着。",
+        "哭一下也没关系哦，我陪你。",
+        "软软的你，不需要逞强。",
+        "你已经做得够好了，别自责了。"
+      ];
+      const res = responses[Math.floor(Math.random() * responses.length)];
+      document.getElementById("res").textContent = res;
+    }
+  </script>
+</body>
+</html>
